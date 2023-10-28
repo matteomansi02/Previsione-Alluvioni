@@ -29,7 +29,6 @@ class ManualDataLoader:
             return batch_data, batch_preds, batch_targets
         if self.current_index == len(self.dataset):
             self.current_index = 0
-            #print('stop', self.current_index, len(self.indices))
             raise StopIteration
 
         batch_indices = self.indices[self.current_index:self.current_index + self.batch_size]
@@ -37,5 +36,4 @@ class ManualDataLoader:
         batch_targets = torch.stack([torch.from_numpy(self.targets[i]) for i in batch_indices])
         batch_preds = torch.stack([torch.from_numpy(self.preds_train[i]) for i in batch_indices])
         self.current_index += self.batch_size
-        # print(self.current_index, len(self.indices[self.current_index:self.current_index + self.last_batch]))
         return batch_data, batch_preds, batch_targets

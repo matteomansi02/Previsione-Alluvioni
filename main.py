@@ -11,9 +11,6 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 def eval_model_preds(model, loader):
-    """Evaluate the model.
-      FOR DATASET WITH PREDICTIONS
-    """
     # set model to eval mode (important for dropout)
     model.eval()
     obs = []
@@ -63,7 +60,6 @@ def train_preds(X_train_new, preds_train, y_train_new, n_epochs, n_timesteps_out
       preds = preds.cpu()
       nse2 = calc_nse(obs.numpy(),preds.numpy())
       print(f'Epoch - {epoch+1},  NSE_train - {round(nse2,4)} Loss - {round(loss.item(),3)}')
-      #print(f'Epoch - {epoch+1}, Loss - {round(loss.item(),3)}')
   return model
 
 def test_preds(model, X_test_new, preds_train, y_test_new, soglia, margine):
@@ -112,4 +108,3 @@ if __name__ == '__main__':
         listone.append(results)
         dffone, matrix = calcolo_soglia_1(obs, preds, indeces, counter, soglia_1)
         matrice.append(matrix)
-        break

@@ -9,9 +9,6 @@ def reshape_with_predictions(train, test, n_timesteps_in, n_timesteps_out):
   X_train = torch.tensor(X_train).float()
   X_test = torch.tensor(X_test).float()
 
-  # X_train = torch.tensor(train.values).float()
-  # X_test = torch.tensor(test.values).float()
-
   y_train = torch.tensor(train.values)[:,-1].float()
   y_test = torch.tensor(test.values)[:,-1].float()
   y_train = y_train.view(y_train.shape[0], 1)
@@ -31,5 +28,4 @@ def reshape_with_predictions(train, test, n_timesteps_in, n_timesteps_out):
 
   X_test_new, y_test_new, preds_test = reshape_data_with_predictions(X_test, y_test, n_timesteps_in, n_timesteps_out, 1)
   X_train_new, y_train_new, preds_train = reshape_data_with_predictions(X_train, y_train, n_timesteps_in, n_timesteps_out, 1)
-  print('these be the shapes', X_train_new.shape, y_train_new.shape, preds_train.shape)
   return X_train_new, y_train_new, preds_train, X_test_new, y_test_new, preds_test
